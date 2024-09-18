@@ -1,0 +1,25 @@
+name: "Publish Sonar JSON to Pixee"
+on:
+  check_run:
+    types: [completed]
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  share:
+    name: Upload Sonar Results to Pixeebot
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.event_name == 'check_run' && github.event.check_run.name == 'SonarCloud Code Analysis') }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: pixee/upload-tool-results-action@v2.3.0
+        with:
+          tool: sonar_issues
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          sonar-component-key: ${{ secrets.SONAR_COMPONENT_KEY }}
