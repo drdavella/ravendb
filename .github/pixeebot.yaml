@@ -1,0 +1,4 @@
+codemods:
+  prepend:
+    - sonar:javascript/use-regexp-exec
+    - sonar:dotnet/assert-order
