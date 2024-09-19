@@ -20,6 +20,6 @@ jobs:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - uses: pixee/upload-tool-results-action@v2.3.0
         with:
-          tool: sonar_issues
+          tool: sonar
           sonar-token: ${{ secrets.SONAR_TOKEN }}
           sonar-component-key: ${{ secrets.SONAR_COMPONENT_KEY }}
