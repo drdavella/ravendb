@@ -53,7 +53,7 @@ class convertToStaticDialog extends dialogViewModelBase {
             .execute()
             .then((result, _, x) => {
                 const xhr = x as unknown as XMLHttpRequest;
-                const fileName = xhr.getResponseHeader("Content-Disposition").match(/filename="(.*?)"/)[1];
+                const fileName = /filename="(.*?)"/.exec(xhr.getResponseHeader("Content-Disposition"))[1];
 
                 switch (outputType) {
                     case "CsharpClass":

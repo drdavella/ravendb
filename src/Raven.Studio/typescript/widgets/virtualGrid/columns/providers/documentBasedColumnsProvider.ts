@@ -260,7 +260,7 @@ class documentBasedColumnsProvider {
             const value = (item as any)[property];
 
             //TODO: support url's in data as well
-            if (typeof value === "string" && value.match(documentBasedColumnsProvider.externalIdRegex)) {
+            if (typeof value === "string" && documentBasedColumnsProvider.externalIdRegex.exec(value)) {
                 const extractedCollectionName = value.split("/")[0].toLowerCase();
                 const matchedCollection = this.collectionTracker.getCollectionNames().find(collection => extractedCollectionName.startsWith(collection.toLowerCase()));
                 return matchedCollection ? appUrl.forEditDoc(value, this.db, matchedCollection) : null;
