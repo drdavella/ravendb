@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
-      - uses: pixee/upload-tool-results-action@v2.3.0
+      - uses: pixee/upload-tool-results-action@286358bc88c489a125daf42c6dfc5d567231c280
         with:
           tool: sonar
           sonar-token: ${{ secrets.SONAR_TOKEN }}
