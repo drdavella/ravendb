@@ -65,9 +65,9 @@ public class RabbitMqEtlTests : RabbitMqEtlTestBase
             var order = JsonConvert.DeserializeObject<OrderData>(bytesAsString);
 
             Assert.NotNull(order);
-            Assert.Equal(order.Id, "orders/1-A");
-            Assert.Equal(order.OrderLinesCount, 2);
-            Assert.Equal(order.TotalCost, 10);
+            Assert.Equal("orders/1-A", order.Id);
+            Assert.Equal(2, order.OrderLinesCount);
+            Assert.Equal(10, order.TotalCost);
         }
     }
 
@@ -317,7 +317,7 @@ public class RabbitMqEtlTests : RabbitMqEtlTestBase
 
             Assert.NotNull(order);
             Assert.Equal(order.Id, $"orders/{counter}");
-            Assert.Equal(order.OrderLinesCount, 2);
+            Assert.Equal(2, order.OrderLinesCount);
             Assert.Equal(order.TotalCost, counter * 2);
         }
     }
@@ -548,7 +548,7 @@ output('test output')"
             var user = JsonConvert.DeserializeObject<UserData>(bytesAsString);
 
             Assert.NotNull(user);
-            Assert.Equal(user.Name, "Arek");
+            Assert.Equal("Arek", user.Name);
 
             var headers = ea.Properties.Headers;
 
@@ -591,7 +591,7 @@ output('test output')"
             var user = JsonConvert.DeserializeObject<UserData>(bytesAsString);
 
             Assert.NotNull(user);
-            Assert.Equal(user.Name, "Arek");
+            Assert.Equal("Arek", user.Name);
 
             using (var session = store.OpenSession())
             {

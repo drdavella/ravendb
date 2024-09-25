@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -81,7 +81,7 @@ namespace SlowTests.Issues
         public async Task QueriesShouldFailoverIfDatabaseIsCompactingCluster()
         {
             var (nodes, leader) = await CreateRaftCluster(2);
-            Assert.Equal(nodes.Count, 2);
+            Assert.Equal(2, nodes.Count);
             var storeOptions = new Options
             {
                 Server = leader,

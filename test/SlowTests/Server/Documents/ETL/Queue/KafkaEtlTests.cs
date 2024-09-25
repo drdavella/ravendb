@@ -82,9 +82,9 @@ public class KafkaEtlTests : KafkaEtlTestBase
             var order = JsonConvert.DeserializeObject<OrderData>(bytesAsString);
 
             Assert.NotNull(order);
-            Assert.Equal(order.Id, "orders/1-A");
-            Assert.Equal(order.OrderLinesCount, 2);
-            Assert.Equal(order.TotalCost, 10);
+            Assert.Equal("orders/1-A", order.Id);
+            Assert.Equal(2, order.OrderLinesCount);
+            Assert.Equal(10, order.TotalCost);
 
             consumer.Close();
             etlDone.Reset();
@@ -186,13 +186,13 @@ public class KafkaEtlTests : KafkaEtlTestBase
             ordersList.Add(order);
         }
 
-        Assert.Equal(ordersList.Count, 10);
+        Assert.Equal(10, ordersList.Count);
 
         for (int i = 0; i < ordersList.Count; i++)
         {
             var order = ordersList.FirstOrDefault(x => x.Id == $"orders/{i}");
             Assert.NotNull(order);
-            Assert.Equal(order.OrderLinesCount, 2);
+            Assert.Equal(2, order.OrderLinesCount);
             Assert.Equal(order.TotalCost, i * 2);
         }
     }
@@ -226,7 +226,7 @@ public class KafkaEtlTests : KafkaEtlTestBase
             usersList.Add(user);
         }
 
-        Assert.Equal(usersList.Count, 2);
+        Assert.Equal(2, usersList.Count);
         Assert.NotNull(usersList.FirstOrDefault(x => x.UserId == "users/1"));
         Assert.NotNull(usersList.FirstOrDefault(x => x.UserId == "people/1"));
     }
@@ -395,7 +395,7 @@ output('test output')"
             var user = JsonConvert.DeserializeObject<User>(bytesAsString);
 
             Assert.NotNull(user);
-            Assert.Equal(user.Name, "Arek");
+            Assert.Equal("Arek", user.Name);
 
             // validate headers
 
@@ -448,7 +448,7 @@ output('test output')"
             var user = JsonConvert.DeserializeObject<User>(bytesAsString);
 
             Assert.NotNull(user);
-            Assert.Equal(user.Name, "Arek");
+            Assert.Equal("Arek", user.Name);
 
             consumer.Close();
 
