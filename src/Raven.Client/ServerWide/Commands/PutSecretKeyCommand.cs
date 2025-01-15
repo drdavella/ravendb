@@ -32,7 +32,7 @@ namespace Raven.Client.ServerWide.Commands
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
-                Content = new StringContent(_base64Key)
+                Content = new StringContent(System.Net.WebUtility.HtmlEncode(_base64Key))
             };
             return request;
         }
